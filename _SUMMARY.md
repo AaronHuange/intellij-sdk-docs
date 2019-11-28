@@ -3,12 +3,15 @@
 * [Introduction](welcome.md)
 * [The IntelliJ Platform](intro/intellij_platform.md)
     * [Contributing to the IntelliJ Platform](basics/platform_contributions.md)
-    * [IntelliJ Coding Guidelines](basics/intellij_coding_guidelines.md)
-* [About this Guide](intro/about.md)
+    * [IntelliJ Platform Coding Guidelines](basics/intellij_coding_guidelines.md)
+* [The IntelliJ Platform SDK](intro/about.md)
     * [Key Topics](intro/key_topics.md)
-    * [Contributing](CONTRIBUTING.md)
+    * [Contributing to the SDK](CONTRIBUTING.md)
+      * [SDK Docs Style Guide](intro/sdk_style.md)
+      * [SDK Code Sample Guidelines](intro/sdk_code_guidelines.md)
     * [Code of Conduct](CODE_OF_CONDUCT.md)
 * [Getting Help](intro/getting_help.md)
+* [Recently Updated](recently_updated.md)
 
 ## Part I - Plugins
 * [Introduction](basics.md)
@@ -16,7 +19,8 @@
 * [Getting Started](basics/getting_started.md)
     * [Using Gradle](tutorials/build_system.md)
         * [Getting Started with Gradle](tutorials/build_system/prerequisites.md)
-        * [Publishing Your Plugin](tutorials/build_system/deployment.md)
+        * [Configuring Gradle Projects](tutorials/build_system/gradle_guide.md)
+        * [Publishing Plugins with Gradle](tutorials/build_system/deployment.md)
     * [Using DevKit](basics/getting_started/using_dev_kit.md)
         * [Setting Up a Development Environment](basics/getting_started/setting_up_environment.md)
         * [Creating a Plugin Project](basics/getting_started/creating_plugin_project.md)
@@ -24,16 +28,17 @@
         * [Running and Debugging a Plugin](basics/getting_started/running_and_debugging_a_plugin.md)
         * [Deploying a Plugin](basics/getting_started/deploying_plugin.md)
         * [Publishing a Plugin](basics/getting_started/publishing_plugin.md)
+* [IDE Development Instances](basics/ide_development_instance.md)
 * [Custom Plugin Repositories](basics/getting_started/update_plugins_format.md)
 * [Plugin Structure](basics/plugin_structure.md)
     * [Plugin Content](basics/plugin_structure/plugin_content.md)
     * [Plugin Class Loaders](basics/plugin_structure/plugin_class_loaders.md)
     * [Plugin Components](basics/plugin_structure/plugin_components.md)
+    * [Plugin Services](basics/plugin_structure/plugin_services.md)
     * [Plugin Extensions and Extension Points](basics/plugin_structure/plugin_extensions_and_extension_points.md)
     * [Plugin Actions](basics/plugin_structure/plugin_actions.md)
-    * [Plugin Services](basics/plugin_structure/plugin_services.md)
     * [Plugin Configuration File](basics/plugin_structure/plugin_configuration_file.md)
-    * [Plugin Icon](basics/plugin_structure/plugin_icon_file.md)
+    * [Plugin Logo (Icon)](basics/plugin_structure/plugin_icon_file.md)
     * [Plugin Dependencies](basics/plugin_structure/plugin_dependencies.md)
 * [IntelliJ Platform Artifacts Repositories](reference_guide/intellij_artifacts.md)
 * [Kotlin for Plugin Developers](tutorials/kotlin.md)
@@ -43,7 +48,7 @@
     * [UI Tools](reference_guide/internal_actions/internal_ui_sub.md)
     * [UI Inspector](reference_guide/internal_actions/internal_uii.md)
     * [Laf Defaults](reference_guide/internal_actions/internal_ui_lafd.md)
-* [IDE Development Instances](basics/ide_development_instance.md)
+* [Optimizing Performance](reference_guide/performance/performance.md)
 * [Plugin Development FAQ](faq.md)
 
 ## Part II - Base Platform
@@ -65,6 +70,7 @@
     * [Miscellaneous Swing Components](user_interface_components/misc_swing_components.md)
     * [Icons and Images](reference_guide/work_with_icons_and_images.md)
     * [Color Scheme Management](reference_guide/color_scheme_management.md)
+    * [Kotlin UI DSL](user_interface_components/kotlin_ui_dsl.md)
 * [UI Themes](reference_guide/ui_themes/themes_intro.md)
     * [Creating UI Themes](reference_guide/ui_themes/themes.md)
     * [Customizing a UI Theme](reference_guide/ui_themes/themes_customize.md)
@@ -84,8 +90,8 @@
 * [Documents](basics/architectural_overview/documents.md)
 * [Editors](reference_guide/editors.md)
     * [Editor Basics](tutorials/editor_basics.md)
-        * [1. Working With Text](tutorials/editor_basics/working_with_text.md)
-        * [2. Editor Coordinates System. Positions And Offsets](tutorials/editor_basics/coordinates_system.md)
+        * [1. Working with Text](tutorials/editor_basics/working_with_text.md)
+        * [2. Editor Coordinates System. Positions and Offsets](tutorials/editor_basics/coordinates_system.md)
         * [3. Handling Editor Events](tutorials/editor_basics/editor_events.md)
     * [Multiple Carets](reference_guide/multiple_carets.md)
 * [Run Configurations](basics/run_configurations.md)
@@ -111,7 +117,7 @@
 * [SDK](reference_guide/project_model/sdk.md)
 * [Library](reference_guide/project_model/library.md)
 * [Facet](reference_guide/project_model/facet.md)
-* [External system integration](reference_guide/frameworks_and_external_apis/external_system_integration.md)
+* [External System Integration](reference_guide/frameworks_and_external_apis/external_system_integration.md)
 
 ## Part IV - PSI
 * [What is the PSI?](basics/architectural_overview/psi.md)
@@ -124,7 +130,7 @@
 * [PSI Cookbook](basics/psi_cookbook.md)
 * [Indexing and PSI Stubs](basics/indexing_and_psi_stubs.md)
     * [File-based indexes](basics/indexing_and_psi_stubs/file_based_indexes.md)
-    * [Stub indexes](basics/indexing_and_psi_stubs/stub_indexes.md)
+    * [Stub Indexes](basics/indexing_and_psi_stubs/stub_indexes.md)
 * Element Patterns
 * Unified AST
 * [XML DOM API](reference_guide/frameworks_and_external_apis/xml_dom_api.md)
@@ -158,11 +164,11 @@
 ## Part VI - Testing
 
 * [Testing Plugins](basics/testing_plugins.md)
-    * [Tests and Fixtures](basics/testing_plugins/tests_and_fixtures.md)
-    * [Light and Heavy Tests](basics/testing_plugins/light_and_heavy_tests.md)
-    * [Test Project and Testdata Directories](basics/testing_plugins/test_project_and_testdata_directories.md)
-    * [Writing Tests](basics/testing_plugins/writing_tests.md)
-    * [Testing Highlighting](basics/testing_plugins/testing_highlighting.md)
+* [Tests and Fixtures](basics/testing_plugins/tests_and_fixtures.md)
+* [Light and Heavy Tests](basics/testing_plugins/light_and_heavy_tests.md)
+* [Test Project and Testdata Directories](basics/testing_plugins/test_project_and_testdata_directories.md)
+* [Writing Tests](basics/testing_plugins/writing_tests.md)
+* [Testing Highlighting](basics/testing_plugins/testing_highlighting.md)
 
 ## Part VII - Custom Languages
 * [Custom Language Support](reference_guide/custom_language_support.md)
@@ -182,7 +188,6 @@
     * [Go to Class and Go to Symbol](reference_guide/custom_language_support/go_to_class_and_go_to_symbol.md)
     * [Documentation](reference_guide/custom_language_support/documentation.md)
     * [Additional Minor Features](reference_guide/custom_language_support/additional_minor_features.md)
-    * To do Explorer
     * Parameter Info
     * Parameter Hints
 * [Custom Language Support Tutorial](tutorials/custom_language_support_tutorial.md)
@@ -221,8 +226,14 @@
 * Debugger
 
 ## Part VIII - Product Specific
-* [Compatibility with Multiple Products](basics/getting_started/plugin_compatibility.md)
 * [Build Number Ranges](basics/getting_started/build_number_ranges.md)
+* [Developing for Multiple Products](products/dev_alternate_products.md)
+* [Compatibility with Multiple Products](basics/getting_started/plugin_compatibility.md)
+* [Android Studio](products/android_studio.md)
+* AppCode
+* CLion
+* DataGrip
+* GoLand
 * [IntelliJ IDEA](products/idea.md)
     * [Tomcat Integration](reference_guide/tomcat_integration.md)
     * [Spring API](reference_guide/frameworks_and_external_apis/spring_api.md)
@@ -231,26 +242,16 @@
     * [PHP Open API](products/phpstorm/php_open_api.md)
     * [Existing Third Party Plugins](products/phpstorm/existing_plugins.md)
 * [PyCharm](products/pycharm.md)
-* DataGrip
-* Android Studio
-* Rider
-
+* [Rider](products/rider.md)
+* [RubyMine](products/rubymine.md)
+* WebStorm
 
 ## Part IX - Custom IDEs
 * Build Your Own IDE
 * Licensing
 
-## Part X - Plugin Repository
-* [Introduction](plugin_repository/index.md)
-* [API Reference](plugin_repository/api/api_reference.md)
-    * [Plugin Upload](plugin_repository/api/plugin_upload.md)
-    * [Plugins List](plugin_repository/api/plugins_list.md)
-    * [Plugin Details](plugin_repository/api/plugin_details.md)
-    * [Plugin Update Download](plugin_repository/api/plugin_download_update.md)
-    * [Maven Interface](plugin_repository/api/maven_interface.md)
-    * [Plugin Developers List](plugin_repository/api/plugin_developers.md)
-* [Plugin Recommendations](plugin_repository/feature_extractor.md)
-* [Custom Release Channels](plugin_repository/custom_channels.md)
+## Part X - Plugin Repository \[moved]
+* [Overview](plugin_repository/index.md)
 
 ## Appendix I - Resources
 
@@ -260,11 +261,13 @@
 ## Appendix II - API Changes
 
 * [Incompatible API Changes](reference_guide/api_changes_list.md)
+    * [2020.*](reference_guide/api_changes/api_changes_list_2020.md)
     * [2019.*](reference_guide/api_changes/api_changes_list_2019.md)
     * [2018.*](reference_guide/api_changes/api_changes_list_2018.md)
     * [2017.*](reference_guide/api_changes/api_changes_list_2017.md)
     * [2016.*](reference_guide/api_changes/api_changes_list_2016.md)
 
 * [Notable API Changes](reference_guide/api_notable/api_notable.md)
+    * [2020.*](reference_guide/api_notable/api_notable_list_2020.md)
     * [2019.*](reference_guide/api_notable/api_notable_list_2019.md)
     * [2018.*](reference_guide/api_notable/api_notable_list_2018.md)

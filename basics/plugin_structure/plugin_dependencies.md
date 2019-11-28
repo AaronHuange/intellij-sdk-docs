@@ -2,54 +2,71 @@
 title: Plugin Dependencies
 ---
 
-Your plugin may depend on classes from other plugins, either bundled, third-party or your own. In order to express such 
-dependencies (e.g. Kotlin), you need to perform the following steps:
-* If the plugin is not bundled, run the sandbox instance of your target IDE and install the plugin there.
-* If you are using Gradle with a Kotlin build script to build your plugin, use `setPlugins()`[^gradleplugin] within the `intellij` block, for example:
+A plugin may depend on classes from other plugins, either bundled, third-party, or by the same author.
+This document describes the syntax for declaring plugin dependencies and optional plugin dependencies.
+For more information about dependencies on the IntelliJ Platform modules, see Part II of this document: [Plugin Compatibility with IntelliJ Platform Products](/basics/getting_started/plugin_compatibility.md).
+ 
+To express dependencies on classes from other plugins or modules, perform the following three required steps:
 
-```kotlin
-intellij {
-        setPlugins("org.jetbrains.kotlin:1.3.11-release-IJ2018.3-1")
-}
-```
-* If you're using Gradle with a groovy build script to build your plugin,  add the dependency to the `plugins`[^gradleplugin] parameter of the `intellij` block in your build.gradle, for example:
+## 1. Preparing Sandbox
+If the plugin is not bundled with the target IDE, run the (sandbox) [IDE Development Instance](/basics/ide_development_instance.md) of your target IDE and install the plugin there.
+
+## 2. Project Setup
+Depending on the chosen development workflow (Gradle or DevKit), one of the two following steps is necessary.
+
+### 2.1 Gradle
+> **NOTE** Please see the `plugins` attribute [gradle-intellij-plugin: Configuration](https://github.com/JetBrains/gradle-intellij-plugin#configuration) for acceptable values.
+
+If the project is using [Gradle](/tutorials/build_system.md) with a Groovy build script to build the plugin, add the dependency to the `plugins` parameter of the `intellij` block in your build.gradle, for example:
 
 ```groovy
 intellij {
     plugins 'org.jetbrains.kotlin:1.3.11-release-IJ2018.3-1'
 }
 ```
-* If you aren't using Gradle, add the jars of the plugin you're depending on to the classpath of your *IntelliJ Platform SDK*.
-  In order to do that, open the Project Structure dialog, select the SDK you're using, press the + button in the Classpath tab, and
-  select the plugin jar file or files.
-    * For bundled plugins, the plugin jar files are located in `plugins/<pluginname>` or `plugins/<pluginname>/lib` under the main installation directory.
-      If you're not sure which jar to add, you can add all of them.
-    * For non-bundled plugins, the plugin jar files are located in `config/plugins/<pluginname>` or `config/plugins/<pluginname>/lib` under the directory specified as "Sandbox Home" in the IntelliJ Platform Plugin SDK settings.
 
+If the project is using [Gradle](/tutorials/build_system.md) with a Kotlin build script to build the plugin, use `setPlugins()` within the `intellij` block, for example:
+
+```kotlin
+intellij {
+        setPlugins("org.jetbrains.kotlin:1.3.11-release-IJ2018.3-1")
+}
+```
+
+#### 2.2 DevKit
+If the project is using [DevKit](/basics/getting_started/using_dev_kit.md), add the JARs of the plugin on which the project depends to the **classpath** of the *IntelliJ Platform SDK*.
+
+> **WARNING** Do not add the plugin JARs as a library: this will fail at runtime because the IntelliJ Platform will load two separate copies of the dependency plugin classes.
+
+To do that, open the Project Structure dialog, select the SDK used in the project, press the + button in the Classpath tab, and
+select the plugin JAR file or files:
+* For bundled plugins, the plugin JAR files are located in `plugins/<pluginname>` or `plugins/<pluginname>/lib` under the main installation directory.
+  If you're not sure which JAR to add, you can add all of them.
+* For non-bundled plugins, the plugin JAR files are located in `config/plugins/<pluginname>` or `config/plugins/<pluginname>/lib` under the directory specified as "Sandbox Home" in the IntelliJ Platform Plugin SDK settings.
 
 ![Adding Plugin to Classpath](img/add_plugin_dependency.png)
 
-> **warning** Do not add the plugin jars as a library: this will fail at runtime because IntelliJ Platform will load two separate copies of the dependency plugin classes.
+## 3. Dependency Declaration in plugin.xml
+Regardless of whether a plugin project uses [Modules Available in All Products](/basics/getting_started/plugin_compatibility.md#modules-available-in-all-products), or [Modules Specific to Functionality](/basics/getting_started/plugin_compatibility.md#modules-specific-to-functionality), the correct module must be listed as a dependency in `plugin.xml`. 
+If a project depends on another plugin, the dependency must be declared like a module.
+If only general IntelliJ Platform features (APIs) are used, then a default dependency on `com.intellij.modules.platform` must be declared.
+To display a list of available IntelliJ Platform modules, invoke the [code completion](https://www.jetbrains.com/help/idea/auto-completing-code.html#4eac28ba) feature for the `<depends>` element contents while editing the plugin project's `plugin.xml` file.
 
-* Add a `<depends>` tag to your plugin.xml, adding the ID of the plugin you're depending on as the contents of the tag.
-For example:
-
+### 3.1 Configuring plugin.xml
+In the `plugin.xml`, add a `<depends>` tag with the ID of the dependency plugin as its content.
+Continuing with the example from [Section 2](#2-project-setup) above, the dependency declaration in `plugin.xml` would be:
 ```xml
 <depends>org.jetbrains.kotlin</depends>
 ```
 
-To find out the ID of the plugin you're depending on, locate the `META-INF/plugin.xml` file inside its jar and check the contents of the `<id>` tag.
 
 ## Optional Plugin Dependencies
-
-You can also specify an optional plugin dependency. In this case, your plugin will load even if the plugin you depend on
-is not installed or enabled, but part of the functionality of your plugin will not be available. In order to do that,
+A project can also specify an optional plugin dependency. In this case, the plugin will load even if the plugin it depends on
+is not installed or enabled, but part of the functionality of the plugin will not be available. In order to do that,
 add `optional="true" config-file="otherconfig.xml"` to the `<depends>` tag.
 
-For example,
-if you're working on a plugin that adds additional highlighting for Java and Kotlin files, you can use the following
-setup. Your main plugin.xml will define an annotator for Java and specify an optional dependency on the Kotlin plugin:
-
+For example, if a plugin project adds additional highlighting for Java and Kotlin files, use the following setup. 
+The main `plugin.xml` will define an annotator for Java and specify an optional dependency on the Kotlin plugin:
 ```xml
 <idea-plugin>
    ...
@@ -61,9 +78,7 @@ setup. Your main plugin.xml will define an annotator for Java and specify an opt
 </idea-plugin>
 ```
 
-Then, you create a file called withKotlin.xml, in the same directory as your main plugin.xml file. In that file, you
-define an annotator for Kotlin:
-
+Then create a file called `withKotlin.xml`, in the same directory as the main `plugin.xml` file. In that file, define an annotator for Kotlin:
 ```xml
 <idea-plugin>
    <extensions defaultExtensionNs="com.intellij">
@@ -71,6 +86,3 @@ define an annotator for Kotlin:
    </extensions>
 </idea-plugin>
 ```
-
----
-[^gradleplugin]: See the `plugins` attribute [gradle-intellij-plugin: Configuration](https://github.com/JetBrains/gradle-intellij-plugin#configuration) for acceptable values.

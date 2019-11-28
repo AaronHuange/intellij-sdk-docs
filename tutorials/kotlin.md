@@ -84,7 +84,7 @@ buildscript {
 }
 
 plugins {
-	id("org.jetbrains.intellij") version "0.4.5"
+	id("org.jetbrains.intellij") version "0.4.14"
 	kotlin("jvm") version "1.2.30"
 }
 
@@ -97,7 +97,7 @@ intellij {
 
 ## 4. UI in Kotlin
 
-The best way to create user interfaces with Kotlin is to use a type safe DSL for building forms instead of GUI designer. The DSL used in the IntelliJ platform is inside `com.intellij.ui.layout` package. [Documentation](https://github.com/JetBrains/intellij-community/blob/master/platform/platform-impl/src/com/intellij/ui/layout/readme.md).
+The best way to create user interfaces with Kotlin is to use a [type safe DSL](/user_interface_components/kotlin_ui_dsl.md) for building forms. Using GUI designer with Kotlin is currently [not supported](https://youtrack.jetbrains.com/issue/KT-6660). 
 
 ## 5. Handling Kotlin code
 

@@ -27,29 +27,28 @@ methods can be used for displaying other kinds of non-modal notification hints o
 ### Top-Level Notifications
 
 The most general way to display non-modal notifications is to use the
-[Notifications](upsource:///platform/platform-api/src/com/intellij/notification/Notification.java)
+[Notifications](upsource:///platform/platform-api/src/com/intellij/notification/Notifications.java)
 class.
 
 It has two main advantages:
 
-*  The user can control the way each notification type is displayed under `Settings | Notifications`
+*  The user can control the way each notification type is displayed under `Settings | Appearance & Behavior | Notifications`
 
 *  All displayed notifications are gathered in the Event Log tool window and can be reviewed later
 
 The specific method used to display a notification is
-[Notifications.Bus.notify()](upsource:///platform/platform-api/src/com/intellij/notification/Notification.java).
+[Notifications.Bus.notify()](upsource:///platform/platform-api/src/com/intellij/notification/Notifications.java).
+If the current Project is known, please use overload with `Project` parameter, so the notification is shown in its associated frame.
+
 The text of the notification can include HTML tags.
-You can allow the user to interact with the notification by including hyperlink tags in the notification text and passing a
-[NotificationListener](upsource:///platform/platform-api/src/com/intellij/notification/NotificationListener.java)
-instance to the constructor of the
-[Notification](upsource:///platform/platform-api/src/com/intellij/notification/Notification.java)
-class.
+
+Use `Notification#addAction(AnAction)` to add links below the content, use [NotificationAction](upsource:///platform/platform-api/src/com/intellij/notification/NotificationAction.java) for convenience. 
 
 The `groupDisplayId` parameter of the
 [Notification](upsource:///platform/platform-api/src/com/intellij/notification/Notification.java)
 constructor specifies a notification type.
-The user can choose the display type corresponding to each notification type under `Settings | Notifications`.
+The user can choose the display type corresponding to each notification type under `Settings | Appearance and Behavior | Notifications`.
 To specify the preferred display type, you need to call
-[Notifications.Bus.register()](upsource:///platform/platform-api/src/com/intellij/notification/Notification.java)
+[Notifications.Bus.register()](upsource:///platform/platform-api/src/com/intellij/notification/Notifications.java)
 before displaying any notifications.
 

@@ -19,7 +19,7 @@ Every type there is represented as an instance of [`ConfigurationType`](upsource
 <configurationType implementation="org.jetbrains.plugins.gradle.service.execution.GradleExternalTaskConfigurationType" />
 ```
 
-The easiest way to implement this interface is to use the [`ConfigurationTypeBase`](upsource:///platform/lang-api/src/com/intellij/execution/configurations/ConfigurationTypeBase.java) base class. In order to use it, you need to inherit from it and to provide the configuration type parameters (ID, name, description and icon) as constructor parameters. In addition to that, you need to call the [`addFactory()`](upsource:///platform/lang-api/src/com/intellij/execution/configurations/ConfigurationTypeBase.java)<!--#L46--> method to add a configuration factory.
+The easiest way to implement this interface is to use the [`ConfigurationTypeBase`](upsource:///platform/lang-api/src/com/intellij/execution/configurations/runConfigurationType.kt) base class. In order to use it, you need to inherit from it and to provide the configuration type parameters (ID, name, description and icon) as constructor parameters. In addition to that, you need to call the [`addFactory()`](upsource:///platform/lang-api/src/com/intellij/execution/configurations/ConfigurationTypeBase.java)<!--#L46--> method to add a configuration factory.
 
 ## Configuration factory
 
@@ -88,3 +88,7 @@ The two main methods that you need to implement are:
 
 Note that, in order to support automatic naming of configurations created from context, your configuration should use
 [`LocatableConfigurationBase`](upsource:///platform/lang-api/src/com/intellij/execution/configurations/LocatableConfigurationBase.java) as the base class.
+
+## Running from the gutter
+
+Take a look at `RunLineMarkerContributor` and its implementations.

@@ -10,7 +10,7 @@ title: XML DOM API
 This article is intended for plugin writers who create custom web server integrations, or some UI for easy XML editing. It describes the *Document Object Model* (DOM) in IntelliJ Platform --- an easy way to work with DTD or Schema-based XML models.
 The following topics will be covered: working with DOM itself (reading/writing tags content, attributes, and subtags) and easy XML editing in the UI by connecting UI to DOM.
 
-It's assumed that the reader is familiar with Java 5, Swing, IntelliJ Platform XML PSI (classes [`XmlTag`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlTag.java), [`XmlFile`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlFile.java), [`XmlTagValue`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlTagValue.java), etc.), IntelliJ Platform plugin development basics (application and project components, file editors).
+It's assumed that the reader is familiar with Java, Swing, IntelliJ Platform XML PSI (classes [`XmlTag`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlTag.java), [`XmlFile`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlFile.java), [`XmlTagValue`](upsource:///xml/xml-psi-api/src/com/intellij/psi/xml/XmlTagValue.java), etc.), IntelliJ Platform plugin development basics (application and project components, file editors).
 
 ## Introduction
 
@@ -514,7 +514,7 @@ In this case, the UI form class can look like this:
 public class ConverterComponent extends BasicDomElementComponent<Converter> {
     private JPanel myRootPane;
     private TextPanel myConverterId;
-    private PsiClassPanel myConverterForClass;
+    private PsiClassPanel myConverterClass;
 
     public ConverterComponent(final Converter domElement) {
         super(domElement);
@@ -523,7 +523,7 @@ public class ConverterComponent extends BasicDomElementComponent<Converter> {
     }
 }
 ```
-All the fields here are actually bound to controls in a GUI form.
+All the fields here are now bound to controls in a GUI form.
 
 Very often you'll have to create your own file editor. Then, to use all the binding and undo functionality, it's suggested to inherit your [`FileEditorProvider`](upsource:///platform/platform-api/src/com/intellij/openapi/fileEditor/FileEditorProvider.java) from [`PerspectiveFileEditorProvider`](upsource:///xml/dom-openapi/src/com/intellij/util/xml/ui/PerspectiveFileEditorProvider.java), create an instance of [`DomFileEditor`](upsource:///xml/dom-openapi/src/com/intellij/util/xml/ui/DomFileEditor.java) there, and pass a [`BasicDomElementComponent`](upsource:///xml/dom-openapi/src/com/intellij/util/xml/ui/BasicDomElementComponent.java). To easily create an editor with a caption at the top, like in our EJB and JSF, you may use the static method `DomFileEditor.createDomFileEditor()`. `DomFileEditor` automatically listens to all changes in the document corresponding to the given DOM element, and therefore refreshes your component on undo. If you want to listen to changes in additional documents, use the methods `addWatchedDocument()`, `removeWatchedDocument()`, `addWatchedElement()`, `removeWatchedElement()` in `DomFileEditor`.
 
@@ -533,9 +533,9 @@ Thank you for your time and attention. We hope you've found this article really 
 ### Further Material
 The following bundled open source plugins make (heavy) use of DOM:
 
-- [Android](http://git.jetbrains.org/?p=idea/android.git;a=tree;f=android;;hb=HEAD)
+- [Android](https://github.com/JetBrains/android)
 - [Ant](upsource:///plugins/ant)
-- [Plugin DevKit](upsource:///plugins/devkit)
+- [Plugin DevKit](upsource:///plugins/devkit/devkit-core)
 - [Maven](upsource:///plugins/maven)
 - [Struts 2](https://github.com/JetBrains/intellij-plugins/tree/master/struts2) (Ultimate Edition)
 

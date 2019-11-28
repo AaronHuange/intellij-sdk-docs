@@ -50,6 +50,7 @@ The following minimal sample demonstrates all details required when exposing UI 
 
 ```     
 
+### Attributes
 - `name` - Human-readable name, e.g., plugin name
 - `fixed` - `false` by default, `true` if metadata describes external elements, e.g., an UI library
 - `ui` - Root element listing all customization keys:
@@ -58,8 +59,14 @@ The following minimal sample demonstrates all details required when exposing UI 
     - `description` - Description to be shown to Theme authors editing `*.theme.json` files
     - `deprecated` - `true` when key is deprecated, please provide explanation and/or replacement in `description` if available
     - `source` - FQN of the underlying UI component implementation
-  
+    - `since` - The release number (e.g. `[2019.2]`) when this UI customization key was exposed. 
+                A release number prior to 2019.2 is valid.
+
+> **Note** Support for the `since` attribute began with version 2019.2, so this attribute is only displayed in versions 2019.2 and later.
+      
 > **TIP** It is highly recommended to always provide a `description` entry, so Theme authors can understand usages.
+
+> **TIP** Do not remove existing keys, but deprecate them instead to help Theme authors upgrade their existing themes.
 
 Color keys can be used via `JBColor#namedColor` providing defaults for Light and Dark theme:
 ```java
@@ -82,7 +89,7 @@ All keys must follow this Naming Pattern:
 | Word | Use for | Example |
 |------|---------|---------|
 | **`foreground`**  | Text color. | `Label.foreground` |
-| **`background`**  | Background color for objects with text. | `Label.foreground` |
+| **`background`**  | Background color for objects with text. | `Label.background` |
 | **`<part>Color`** | Objects with a single color (do not have foreground/background). Do not use the word “Color” separately, always use with the “part” word. <br/><br/>_The word “Color” shows that this is a color property. Otherwise, it can be confused with a property of another type._ | `Popup.borderColor` <br/> `Group.separatorColor` |
 
 #### State
@@ -94,7 +101,7 @@ All keys must follow this Naming Pattern:
 | **`Focused`**    | The current focused component. | `Button.focusedBorderColor` |
 | **`Selected`**   | A selected tab or any other control that has equally meaningful selected and inactive states. | `ToolWindow.HeaderTab.selectedBackground` |
 | **`Hover`** <br/> **`Pressed`** | An action as indicated in states. | `Link.hoverForeground` <br/> `Link.pressedForeground` |
-| **`Error`** <br/> **`Warning`** <br/> **`Success`** | Validation states. [See example](https://jetbrains.github.io/ui/principles/validation_errors/) in the guide article. | `ValidationTooltip.errorBackground` <br/> `ValidationTooltip.warningBorderColor` |
+| **`Error`** <br/> **`Warning`** <br/> **`Success`** | Validation states. [See example](https://jetbrains.design/intellij/principles/validation_errors/) in the guide article. | `ValidationTooltip.errorBackground` <br/> `ValidationTooltip.warningBorderColor` |
 | **`Disabled`**   | Unavailable components. | `Label.disabledForeground` |
 
 #### Part
@@ -161,4 +168,4 @@ Metadata is split up as follows:
 
 New keys should be added to `IntelliJPlatform.themeMetadata.json` only (or corresponding "local" `*.themeMetadata.json` file of the plugin if applicable).
 
-Please make sure to respect [Key Naming Scheme](#key-naming-scheme) and keep alphabetical ordering of keys.
+Please make sure to add a `description` and use `since` and `deprecated` attributes explained in [Attributes](#attributes). Respect [Key Naming Scheme](#key-naming-scheme) and keep alphabetical ordering of keys.

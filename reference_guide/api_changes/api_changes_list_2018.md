@@ -10,6 +10,10 @@ See the note on how to document new problems on the main page reference_guide/ap
 
 -->
 
+> **NOTE** Changes from API marked with [`org.jetbrains.annotations.ApiStatus.@Experimental/ScheduledForRemoval`](upsource:///platform/util/src/org/jetbrains/annotations/ApiStatus.java) are not listed here, as incompatible changes are to be expected.
+
+# 2018.3 
+
 ## Changes in IntelliJ Platform 2018.3
 
 `com.intellij.openapi.externalSystem.action.ExternalSystemAction.isEnabled` method `AnActionEvent` parameter marked `@NotNull`
@@ -37,6 +41,8 @@ See the note on how to document new problems on the main page reference_guide/ap
 : Use `com.intellij.psi.meta.PsiMetaData.getDependencies` instead.
 
 
+# 2018.2
+ 
 ## Changes in IntelliJ Platform 2018.2
 
 `com.intellij.util.Query.forEach` method parameter type changed from `Processor<Result>` to `Processor<? super Result>`
@@ -51,7 +57,7 @@ See the note on how to document new problems on the main page reference_guide/ap
 `com.intellij.openapi.application.QueryExecutorBase.processQuery` method parameter type changed from `Processor<Result>` to `Processor<? super Result>`
 : Update `QueryExecutorBase` inheritors accordingly.
 
-`com.intellij.util.InstanceofQuery` type parameter `T` added
+`com.intellij.util.InstanceofQuery` class type parameter `T` added
 : Set this parameter at call sites to base query type.
 
 `com.intellij.task.ProjectTaskManager.build` method parameter type changed from `Artifact[]` to `ProjectModelBuildableElement[]` 
@@ -63,6 +69,8 @@ See the note on how to document new problems on the main page reference_guide/ap
 `org.apache.batik.script.InterpreterFactory.createInterpreter` abstract method added 
 : Update `InterpreterFactory` implementations accordingly.
 
+
+# 2018.1 
 
 ## Changes in IntelliJ Platform 2018.1
 

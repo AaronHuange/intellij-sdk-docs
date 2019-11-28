@@ -4,7 +4,7 @@ title: Plugin Development FAQ
 
 
 This FAQ is a topical index of questions that have been asked (and answered) on our
-[OpenAPI forum](https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development).
+[IntelliJ IDEA Open API and Plugin Development forum](https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development).
 
 ## Open-Source Plugins
 *  [How do I compile the Scala plugin?](https://github.com/jetbrains/intellij-scala#setting-up-the-project)
@@ -67,12 +67,9 @@ This FAQ is a topical index of questions that have been asked (and answered) on 
 *  [How do I report out-of-date files?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206791775-VCS-OpenAPI-what-to-do-with-files-detected-as-out-of-date-)
 
 ## Test Framework
-*  [How can I use the new test framework?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206143599-New-Testing-Framework)
 *  [How do I create a library dependency in my test module?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206791555-library-depndency-in-InspectionTestCase)
 
 ## Plugin Architecture
-*  [Why are the extension elements in my plugin.xml red?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206138949-plugin-dtd-and-fileEditorProvider-element)
-*  [How can I read the plugin descriptor of my plugin from code?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206796695-how-to-read-the-plugin-xml-file-from-within-plugin)
 *  [How do I provide a custom exception reporter for my plugin?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206793965-Custom-exception-reporting)
 *  [How can I add the help topics of my plugin to the IntelliJ Platform help system?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206760095-how-do-i-plug-into-the-main-idea-help-system-)
 *  [How do I get the version of IntelliJ Platform under which my plugin is running?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206800275-How-to-get-the-idea-version)
@@ -101,6 +98,7 @@ This FAQ is a topical index of questions that have been asked (and answered) on 
 *  [Why are the inspection results shown multiple times?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206142489-visitXmlAttribute-question)
 *  [How can I provide a quick fix that creates a method?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206142769-Triggering-Create-Method-intention)
 *  [Is it possible to inspect only the elements that have been modified after the last full inspection?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206800645-How-to-inspect-only-the-elements-modified-since-the-last-class-inspection)
+*  [ExternalAnnotator not in sync with current editor](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000337510-Only-trigger-externalAnnotator-when-the-file-system-is-in-sync)
 
 ## Project Structure
 *  [Can I add a new module dependency storage format?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206137859-Dependency-storage-formats-)
